@@ -7,7 +7,7 @@
 (() => {
   // ===== Configuration =====
   // Set this to your Minecraft server host (example: "play.onesin.base44.app" or "example.com:25565")
-  const MC_HOST = 'play.onesin.base44.app';
+  const MC_HOST = 'play.onesin.duckdns,org';
 
   // Existing state for simulated live server stats (UI)
   const state = {
