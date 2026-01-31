@@ -1,13 +1,13 @@
 // script.js — vanilla JS implementation of the ServerStats page
 //
 // Updated to fetch Minecraft server status from the public mcsrvstat.us API
-// Usage: set `MC_HOST` to your Minecraft server hostname (optionally include :port).
+// Usage: set `MC_HOST` to your Minecraft server hostname (optionally include :port). 
 // Falls back gracefully if the API call fails.
 
 (() => {
   // ===== Configuration =====
   // Set this to your Minecraft server host (example: "play.onesin.base44.app" or "example.com:25565")
-  const MC_HOST = 'play.onesin.duckdns,org';
+  const MC_HOST = 'onesin.duckdns.org';
 
   // Existing state for simulated live server stats (UI)
   const state = {
@@ -54,12 +54,12 @@
 
   // Small inline SVG icons
   const icons = {
-    server: `<svg class="w-6 h-6 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="8" rx="2"/><rect x="2" y="13" width="20" height="8" rx="2"/></svg>`,
-    players: `<svg class="w-6 h-6 text-cyan-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-3-3.87"/><path d="M7 21v-2a4 4 0 0 1 3-3.87"/><circle cx="9" cy="7" r="4"/><circle cx="17" cy="7" r="4"/></svg>`,
-    motd: `<svg class="w-6 h-6 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg>`,
-    version: `<svg class="w-6 h-6 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l4 8H8z"/><path d="M2 22h20"/></svg>`,
-    ping: `<svg class="w-6 h-6 text-rose-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12v.01"/><path d="M3 12a9 9 0 0 1 18 0"/></svg>`,
-    offline: `<svg class="w-6 h-6 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M4.2 4.2l15.6 15.6"/></svg>`
+    server: `<svg class=\"w-6 h-6 text-cyan-400\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"8\" rx=\"2\"/><rect x=\"2\" y=\"13\" width=\"20\" height=\"8\" rx=\"2\"/></svg>`,
+    players: `<svg class=\"w-6 h-6 text-cyan-300\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 21v-2a4 4 0 0 0-3-3.87\"/><path d=\"M7 21v-2a4 4 0 0 1 3-3.87\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><circle cx=\"17\" cy=\"7\" r=\"4\"/></svg>`,
+    motd: `<svg class=\"w-6 h-6 text-slate-300\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 7h18M3 12h18M3 17h18\"/></svg>`,
+    version: `<svg class=\"w-6 h-6 text-amber-400\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2l4 8H8z\"/><path d=\"M2 22h20\"/></svg>`,
+    ping: `<svg class=\"w-6 h-6 text-rose-400\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12v.01\"/><path d=\"M3 12a9 9 0 0 1 18 0\"/></svg>`,
+    offline: `<svg class=\"w-6 h-6 text-red-400\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M4.2 4.2l15.6 15.6\"/></svg>`
   };
 
   // ===== Minecraft server status (mcsrvstat.us) =====
@@ -81,7 +81,7 @@
 
     // Provide link to the server info page (mcsrvstat provides info but we link to Minecraft server query page or a direct IP)
     const hostDisplay = MC_HOST;
-    repoLinkArea.innerHTML = `<a href="https://mcsrvstat.us/server/${encodeURIComponent(MC_HOST)}" target="_blank" rel="noreferrer" class="text-slate-300 hover:underline">View MC status</a>`;
+    repoLinkArea.innerHTML = `<a href=\"https://mcsrvstat.us/server/${encodeURIComponent(MC_HOST)}\" target=\"_blank\" rel=\"noreferrer\" class=\"text-slate-300 hover:underline\">View MC status</a>`;
 
     const online = !!data.online;
     const playersOnline = data.players?.online ?? null;
@@ -171,7 +171,7 @@
     grid.appendChild(createStatCard(icons.clock || icons.server, 'Uptime', `${state.uptime}%`, 'Last 30 days'));
     grid.appendChild(createStatCard(icons.message || icons.motd, 'Messages Today', fmtNumber(state.messagesDaily), 'Active conversations'));
     grid.appendChild(createStatCard(icons.wifi || icons.ping, 'Server Ping', `${state.ping}ms`, 'Lightning fast'));
-    grid.appendChild(createStatCard(`<svg class="w-6 h-6 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>`, 'Server Status', 'Healthy', 'All systems operational'));
+    grid.appendChild(createStatCard(`<svg class=\"w-6 h-6 text-slate-300\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 6h16M4 12h16M4 18h16\"/></svg>`, 'Server Status', 'Healthy', 'All systems operational'));
   }
 
   function startSimulation() {
