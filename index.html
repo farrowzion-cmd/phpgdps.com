@@ -1,145 +1,122 @@
-mport React from 'react';
-import { motion } from 'framer-motion';
-import { FileText, Shield, Ban, AlertTriangle } from 'lucide-react';
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Greeting Server — Server Stats</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* small helper to make cards match the look from the React version */
+    .card {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(71, 85, 105, 0.2);
+      border-radius: 1rem;
+      padding: 1.25rem;
+    }
+    .card-cta {
+      background: linear-gradient(90deg,#06b6d4,#14b8a6);
+      color: #000;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-200 antialiased">
+  <!-- Soft background orbs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.8)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.8)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+  </div>
 
-export default function Terms() {
-  return (
-    <div className="min-h-screen bg-slate-950">
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative z-10 px-4 py-20">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center justify-center mb-6">
-              <div className="p-4 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-2xl">
-                <FileText className="w-10 h-10 text-white" />
-              </div>
-            </div>
-            <h1 className="text-5xl font-bold text-white mb-4">Terms of Service</h1>
-            <p className="text-slate-400">Last updated: January 31, 2026</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="space-y-6"
-          >
-            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                <Shield className="w-6 h-6 text-cyan-400" />
-                1. Acceptance of Terms
-              </h2>
-              <p className="text-slate-300 leading-relaxed mb-4">
-                By accessing onesin server, you agree to be bound by these Terms of Service. 
-                If you do not agree to these terms, please do not use our services.
-              </p>
-            </div>
-
-            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-4">2. Server Rules</h2>
-              <div className="space-y-4 text-slate-300">
-                <div>
-                  <h3 className="text-white font-semibold mb-2">✅ Allowed:</h3>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Griefing and raiding other players</li>
-                    <li>Competitive gameplay and PvP</li>
-                    <li>Building, destroying, and creating chaos</li>
-                    <li>Forming alliances and rivalries</li>
-                  </ul>
-                </div>
-                <div className="pt-4">
-                  <h3 className="text-red-400 font-semibold mb-2 flex items-center gap-2">
-                    <Ban className="w-5 h-5" />
-                    Strictly Prohibited:
-                  </h3>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Hacking, cheating, or using exploits</li>
-                    <li>Creating or participating in black markets</li>
-                    <li>Sharing or selling accounts</li>
-                    <li>Harassment or hate speech</li>
-                    <li>DDoS attacks or server disruption</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-4">3. Account Responsibility</h2>
-              <p className="text-slate-300 leading-relaxed">
-                You are responsible for maintaining the security of your account. Any activity 
-                performed under your account is your responsibility. Notify administrators immediately 
-                if you suspect unauthorized access.
-              </p>
-            </div>
-
-            <div className="bg-red-900/20 border-2 border-red-500/30 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                <AlertTriangle className="w-6 h-6 text-red-400" />
-                4. Black Market Policy
-              </h2>
-              <p className="text-slate-300 leading-relaxed mb-4">
-                onesin has zero tolerance for black market operations. We actively monitor for:
-              </p>
-              <ul className="list-disc list-inside space-y-2 text-slate-300 ml-4">
-                <li>Real-money trading (RMT)</li>
-                <li>Unauthorized item sales</li>
-                <li>Account selling or sharing</li>
-                <li>Exploit distribution</li>
-              </ul>
-              <p className="text-slate-300 leading-relaxed mt-4">
-                Violation results in immediate permanent ban with no appeal.
-              </p>
-            </div>
-
-            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-4">5. Enforcement</h2>
-              <p className="text-slate-300 leading-relaxed mb-4">
-                Server administrators reserve the right to:
-              </p>
-              <ul className="list-disc list-inside space-y-2 text-slate-300 ml-4">
-                <li>Ban or suspend users violating these terms</li>
-                <li>Remove content deemed inappropriate</li>
-                <li>Monitor server activity for rule violations</li>
-                <li>Modify rules as needed for server health</li>
-              </ul>
-            </div>
-
-            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-4">6. Age Requirements</h2>
-              <p className="text-slate-300 leading-relaxed">
-                onesin is a family-friendly server welcoming both kids and adults. Parents are 
-                responsible for monitoring their children's activities. Users under 13 must have 
-                parental consent.
-              </p>
-            </div>
-
-            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-4">7. Disclaimer</h2>
-              <p className="text-slate-300 leading-relaxed">
-                onesin is provided "as is" without warranties. We are not liable for loss of 
-                in-game items, progress, or any damages resulting from server use. Server 
-                downtime may occur without notice.
-              </p>
-            </div>
-
-            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-4">8. Changes to Terms</h2>
-              <p className="text-slate-300 leading-relaxed">
-                We reserve the right to modify these Terms of Service at any time. Continued 
-                use of the server after changes constitutes acceptance of new terms.
-              </p>
-            </div>
-          </motion.div>
+  <main class="relative z-10 px-4 py-8 max-w-6xl mx-auto">
+    <!-- Header -->
+    <header class="text-center mb-10">
+      <div class="inline-flex items-center justify-center mb-4">
+        <div class="p-4 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-2xl">
+          <!-- file icon -->
+          <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2z"/>
+          </svg>
         </div>
       </div>
-    </div>
-  );
-}
+
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">Greeting Server — Dashboard</h1>
+      <p id="last-updated" class="text-slate-400">Last updated: —</p>
+    </header>
+
+    <!-- Repo panel -->
+    <section class="mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <!-- activity icon -->
+          <svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3 2 12h4l3-8 3 8z"/></svg>
+          <h2 class="text-2xl font-semibold text-white">Repository</h2>
+          <span id="repo-name" class="text-sm text-slate-400 ml-2">(loading...)</span>
+        </div>
+
+        <div class="text-sm text-slate-400" id="repo-link-area">Loading repo stats…</div>
+      </div>
+
+      <div id="repo-stats" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <!-- stat cards injected by script.js -->
+      </div>
+
+      <div class="mt-3 text-sm text-slate-400">
+        <label>Optional GitHub token (client-side only):</label>
+        <input id="token-input" class="ml-2 px-2 py-1 rounded bg-slate-700 text-white" placeholder="ghp_..." />
+        <button id="set-token" class="ml-2 px-3 py-1 rounded bg-cyan-500 text-black font-semibold">Set</button>
+        <button id="clear-token" class="ml-2 px-3 py-1 rounded bg-slate-700 text-white">Clear</button>
+        <div class="mt-1 text-xs text-slate-500">If you use a token, do NOT commit it to public repos. Prefer server-side fetching for private tokens.</div>
+      </div>
+    </section>
+
+    <!-- Live stats -->
+    <section class="py-6">
+      <div class="flex items-center gap-3 mb-6">
+        <svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3 2 12h4l3-8 3 8z"/></svg>
+        <h3 class="text-2xl font-semibold text-white">Live Statistics</h3>
+      </div>
+
+      <div id="live-stats" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- stat cards injected by script.js -->
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-8">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">What Makes Us Different</h2>
+        <p class="text-slate-400 max-w-2xl mx-auto">Our greeting server is built on respect, positivity, and genuine connections.</p>
+      </div>
+
+      <div id="features" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Feature cards will be injected by script.js -->
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12">
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 p-12 text-center">
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-teal-500/10"></div>
+        <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl"></div>
+
+        <div class="relative z-10">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Join?</h2>
+          <p class="text-slate-400 mb-8 max-w-xl mx-auto">Become part of our welcoming community for all ages. Perfect for kids and adults! Remember: good vibes only, and absolutely no hacking!</p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button class="px-8 py-4 card-cta rounded-xl font-semibold">Connect Now</button>
+            <button class="px-8 py-4 bg-slate-800 border border-slate-700 text-white font-semibold rounded-xl hover:bg-slate-700 transition-colors">Learn More</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-800/50 text-center">
+      <p class="text-slate-500 text-sm">© 2024 Greeting Server. All rights reserved. No hacking allowed.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
