@@ -1,0 +1,145 @@
+mport React from 'react';
+import { motion } from 'framer-motion';
+import { FileText, Shield, Ban, AlertTriangle } from 'lucide-react';
+
+export default function Terms() {
+  return (
+    <div className="min-h-screen bg-slate-950">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative z-10 px-4 py-20">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-12"
+          >
+            <div className="inline-flex items-center justify-center mb-6">
+              <div className="p-4 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-2xl">
+                <FileText className="w-10 h-10 text-white" />
+              </div>
+            </div>
+            <h1 className="text-5xl font-bold text-white mb-4">Terms of Service</h1>
+            <p className="text-slate-400">Last updated: January 31, 2026</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="space-y-6"
+          >
+            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <Shield className="w-6 h-6 text-cyan-400" />
+                1. Acceptance of Terms
+              </h2>
+              <p className="text-slate-300 leading-relaxed mb-4">
+                By accessing onesin server, you agree to be bound by these Terms of Service. 
+                If you do not agree to these terms, please do not use our services.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
+              <h2 className="text-2xl font-bold text-white mb-4">2. Server Rules</h2>
+              <div className="space-y-4 text-slate-300">
+                <div>
+                  <h3 className="text-white font-semibold mb-2">✅ Allowed:</h3>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Griefing and raiding other players</li>
+                    <li>Competitive gameplay and PvP</li>
+                    <li>Building, destroying, and creating chaos</li>
+                    <li>Forming alliances and rivalries</li>
+                  </ul>
+                </div>
+                <div className="pt-4">
+                  <h3 className="text-red-400 font-semibold mb-2 flex items-center gap-2">
+                    <Ban className="w-5 h-5" />
+                    Strictly Prohibited:
+                  </h3>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Hacking, cheating, or using exploits</li>
+                    <li>Creating or participating in black markets</li>
+                    <li>Sharing or selling accounts</li>
+                    <li>Harassment or hate speech</li>
+                    <li>DDoS attacks or server disruption</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
+              <h2 className="text-2xl font-bold text-white mb-4">3. Account Responsibility</h2>
+              <p className="text-slate-300 leading-relaxed">
+                You are responsible for maintaining the security of your account. Any activity 
+                performed under your account is your responsibility. Notify administrators immediately 
+                if you suspect unauthorized access.
+              </p>
+            </div>
+
+            <div className="bg-red-900/20 border-2 border-red-500/30 rounded-2xl p-8">
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <AlertTriangle className="w-6 h-6 text-red-400" />
+                4. Black Market Policy
+              </h2>
+              <p className="text-slate-300 leading-relaxed mb-4">
+                onesin has zero tolerance for black market operations. We actively monitor for:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-slate-300 ml-4">
+                <li>Real-money trading (RMT)</li>
+                <li>Unauthorized item sales</li>
+                <li>Account selling or sharing</li>
+                <li>Exploit distribution</li>
+              </ul>
+              <p className="text-slate-300 leading-relaxed mt-4">
+                Violation results in immediate permanent ban with no appeal.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
+              <h2 className="text-2xl font-bold text-white mb-4">5. Enforcement</h2>
+              <p className="text-slate-300 leading-relaxed mb-4">
+                Server administrators reserve the right to:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-slate-300 ml-4">
+                <li>Ban or suspend users violating these terms</li>
+                <li>Remove content deemed inappropriate</li>
+                <li>Monitor server activity for rule violations</li>
+                <li>Modify rules as needed for server health</li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
+              <h2 className="text-2xl font-bold text-white mb-4">6. Age Requirements</h2>
+              <p className="text-slate-300 leading-relaxed">
+                onesin is a family-friendly server welcoming both kids and adults. Parents are 
+                responsible for monitoring their children's activities. Users under 13 must have 
+                parental consent.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
+              <h2 className="text-2xl font-bold text-white mb-4">7. Disclaimer</h2>
+              <p className="text-slate-300 leading-relaxed">
+                onesin is provided "as is" without warranties. We are not liable for loss of 
+                in-game items, progress, or any damages resulting from server use. Server 
+                downtime may occur without notice.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
+              <h2 className="text-2xl font-bold text-white mb-4">8. Changes to Terms</h2>
+              <p className="text-slate-300 leading-relaxed">
+                We reserve the right to modify these Terms of Service at any time. Continued 
+                use of the server after changes constitutes acceptance of new terms.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+}
