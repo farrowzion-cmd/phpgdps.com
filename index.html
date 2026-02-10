@@ -3,35 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phpgdps | PHP Server Emulator</title>
+    <title>Phpgdps | Native PHP GDPS</title>
     <style>
-        :root { --bg: #0d1117; --card: rgba(22, 27, 34, 0.9); --accent: #238636; --glow: #58a6ff; }
-        body { margin: 0; font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: #c9d1d9; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-image: radial-gradient(circle at top, #161b22, transparent); }
-        .glass-box { background: var(--card); backdrop-filter: blur(20px); border: 1px solid rgba(240, 246, 252, 0.1); border-radius: 24px; padding: 45px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.8); }
-        h1 { margin: 0; font-size: 3rem; color: #fff; letter-spacing: -2px; font-weight: 800; }
-        .tagline { color: #8b949e; margin: 15px 0 35px; font-size: 1.1rem; line-height: 1.5; }
-        .dl-button { background: var(--accent); color: white; border: none; padding: 18px; width: 100%; border-radius: 12px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(35, 134, 54, 0.4); text-decoration: none; display: block; box-sizing: border-box; }
-        .dl-button:hover { background: #2ea043; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(35, 134, 54, 0.6); }
-        #counter { margin-top: 25px; font-size: 0.85rem; font-family: monospace; color: var(--glow); letter-spacing: 1px; opacity: 0.8; }
-        .badge { background: rgba(88, 166, 255, 0.1); color: var(--glow); padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; margin-bottom: 15px; display: inline-block; border: 1px solid rgba(88, 166, 255, 0.2); }
+        :root { --bg: #0b0e14; --card: #161b22; --accent: #238636; --text: #f0f6fc; --sub: #8b949e; --blue: #58a6ff; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; }
+        .hero { background: var(--card); border: 1px solid rgba(240, 246, 252, 0.1); border-radius: 24px; padding: 60px 40px; width: 100%; max-width: 450px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6); position: relative; }
+        .badge { background: rgba(88, 166, 255, 0.1); color: var(--blue); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; border: 1px solid rgba(88, 166, 255, 0.2); margin-bottom: 25px; display: inline-block; }
+        h1 { margin: 0; font-size: 3.5rem; letter-spacing: -3px; font-weight: 800; color: #fff; }
+        p { color: var(--sub); font-size: 1.15rem; line-height: 1.5; margin: 15px 0 45px; }
+        .dl-button { background: var(--accent); color: #fff; padding: 20px 0; width: 100%; border-radius: 12px; font-size: 1.3rem; font-weight: 700; text-decoration: none; display: block; border: none; cursor: pointer; transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 14px rgba(35, 134, 54, 0.4); }
+        .dl-button:hover { background: #2ea043; transform: scale(1.02); box-shadow: 0 6px 20px rgba(35, 134, 54, 0.6); }
+        .dl-button:active { transform: scale(0.98); }
+        #stats { margin-top: 30px; font-family: ui-monospace, monospace; font-size: 0.85rem; color: var(--blue); letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
-    <div class="glass-box">
-        <div class="badge">NATIVE PHP SERVER</div>
+    <div class="hero">
+        <div class="badge">STABLE RELEASE</div>
         <h1>Phpgdps</h1>
-        <p class="tagline">A full-PHP Geometry Dash emulator. Lightweight, flat-file, and blazing fast.</p>
+        <p>A native server emulator for Geometry Dash. Pure PHP, zero-config, and incredibly lightweight.</p>
         
-        <!-- The href is set to # to hide it from status bar on hover -->
-        <a href="#" class="dl-button" id="dlBtn" download>Download Phpgdps</a>
+        <!-- Fixed button logic -->
+        <a href="#" class="dl-button" id="btn">Install Phpgdps</a>
 
-        <div id="counter">INITIALIZING...</div>
+        <div id="stats">CONNECTING TO GITHUB...</div>
     </div>
 
     <script>
-        const CFG = {
-            repo: "farrowzion-cmd/Phpgdps",
-            asset: "Phpgdps_flat.zip",
-            // Direct download link from your specific GitHub release tag
-            url: "
+        const REPO = "farrowzion-cmd/Phpgdps";
+        const ASSET = "Phpgdps_flat.zip";
+        const URL = `
