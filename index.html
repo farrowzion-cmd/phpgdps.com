@@ -3,59 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phpgdps | Pure PHP Server Emulator</title>
+    <title>Phpgdps | Native PHP Server Emulator</title>
     <style>
-        :root { --bg: #0d1117; --glass: rgba(22, 27, 34, 0.8); --border: rgba(240, 246, 252, 0.1); --accent: #238636; --glow: #58a6ff; }
-        body { margin: 0; font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: #c9d1d9; display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; background-image: radial-gradient(circle at 50% -20%, #161b22, transparent); }
-        .container { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 24px; padding: 50px; width: 100%; max-width: 440px; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.6); position: relative; z-index: 1; }
-        h1 { margin: 0; font-size: 2.8rem; font-weight: 800; color: #fff; letter-spacing: -2px; }
-        .php-tag { display: inline-block; background: rgba(137, 147, 190, 0.15); color: #8993be; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; margin-bottom: 20px; border: 1px solid rgba(137, 147, 190, 0.3); }
-        p { color: #8b949e; line-height: 1.6; margin-bottom: 40px; font-size: 1.05rem; }
-        .download-btn { background: var(--accent); color: #fff; border: none; padding: 18px 0; width: 100%; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: 0.3s cubic-bezier(0.2, 0, 0, 1); box-shadow: 0 4px 15px rgba(35, 134, 54, 0.3); }
-        .download-btn:hover { background: #2ea043; transform: scale(1.02); box-shadow: 0 8px 25px rgba(35, 134, 54, 0.5); }
-        #hit-counter { margin-top: 25px; font-size: 0.85rem; font-family: 'Fira Code', monospace; color: var(--glow); text-transform: uppercase; letter-spacing: 1px; }
+        :root { --bg: #0d1117; --card: rgba(22, 27, 34, 0.85); --primary: #58a6ff; --accent: #238636; }
+        body { margin: 0; font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: #c9d1d9; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-image: radial-gradient(circle at top right, #161b22, transparent); }
+        .glass-box { background: var(--card); backdrop-filter: blur(16px); border: 1px solid rgba(240, 246, 252, 0.1); border-radius: 24px; padding: 50px; width: 100%; max-width: 440px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.7); }
+        h1 { margin: 0; font-size: 3rem; color: #fff; letter-spacing: -2px; font-weight: 800; }
+        .tagline { color: #8b949e; margin: 15px 0 40px; font-size: 1.1rem; line-height: 1.5; }
+        .dl-button { background: var(--accent); color: white; border: none; padding: 18px; width: 100%; border-radius: 12px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(35, 134, 54, 0.4); }
+        .dl-button:hover { background: #2ea043; transform: scale(1.03); box-shadow: 0 8px 25px rgba(35, 134, 54, 0.6); }
+        #counter { margin-top: 25px; font-size: 0.9rem; font-family: monospace; color: var(--primary); letter-spacing: 1px; }
+        .php-badge { background: rgba(88, 166, 255, 0.15); color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 20px; display: inline-block; border: 1px solid rgba(88, 166, 255, 0.3); }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="php-tag">POWERED BY PHP 8.x</div>
+    <div class="glass-box">
+        <div class="php-badge">FULL PHP EMULATOR</div>
         <h1>Phpgdps</h1>
-        <p>A full-PHP Geometry Dash server emulator. Zero configuration, flat-file structure, and native performance.</p>
+        <p class="tagline">A lightweight, high-performance Geometry Dash server written entirely in PHP. No complex setup, just flat-file speed.</p>
         
-        <button class="download-btn" id="dlTrigger">Download for Windows</button>
+        <button class="dl-button" id="trigger">Download for Windows</button>
 
-        <div id="hit-counter">Connecting to GitHub...</div>
+        <div id="counter">FETCHING HITS...</div>
     </div>
 
     <script>
-        const CFG = {
-            repo: "farrowzion-cmd/Phpgdps",
-            asset: "Phpgdps_flat.zip",
-            url: "https://github.com"
-        };
-
-        // Hides the URL from status bar by using a JS click event without an href
-        document.getElementById('dlTrigger').addEventListener('click', () => {
-            const vault = document.createElement('a');
-            vault.href = CFG.url;
-            vault.click();
-        });
-
-        async function fetchStats() {
-            try {
-                const res = await fetch(`https://api.github.com{CFG.repo}/releases/tags/Release`);
-                const data = await res.json();
-                const file = data.assets.find(a => a.name === CFG.asset);
-                if (file) {
-                    document.getElementById('hit-counter').innerText = `${file.download_count.toLocaleString()} INSTALLED`;
-                }
-            } catch (err) {
-                document.getElementById('hit-counter').style.display = 'none';
-            }
-        }
-
-        fetchStats();
-    </script>
-</body>
-</html>
+        const REPO = "farrowzion-cmd/Phpgdps";
+        const TAG = "Release";
+        const ASSET_NAME = "Phpgdps_flat.zip";
+        const DL_URL = "
