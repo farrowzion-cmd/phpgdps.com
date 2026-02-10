@@ -1,122 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Greeting Server — Server Stats</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* small helper to make cards match the look from the React version */
-    .card {
-      background: rgba(15, 23, 42, 0.5);
-      border: 1px solid rgba(71, 85, 105, 0.2);
-      border-radius: 1rem;
-      padding: 1.25rem;
-    }
-    .card-cta {
-      background: linear-gradient(90deg,#06b6d4,#14b8a6);
-      color: #000;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>GDPS Creator</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        #status { margin-top: 20px; font-weight: bold; }
+    </style>
 </head>
-<body class="min-h-screen bg-slate-950 text-slate-200 antialiased">
-  <!-- Soft background orbs -->
-  <div class="fixed inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl"></div>
-    <div class="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.8)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.8)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-  </div>
+<body>
 
-  <main class="relative z-10 px-4 py-8 max-w-6xl mx-auto">
-    <!-- Header -->
-    <header class="text-center mb-10">
-      <div class="inline-flex items-center justify-center mb-4">
-        <div class="p-4 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-2xl">
-          <!-- file icon -->
-          <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M19 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2z"/>
-          </svg>
-        </div>
-      </div>
+    <h1>Geometry Dash Private Server</h1>
+    <button id="startBtn">Start GDPS</button>
+    <div id="status"></div>
 
-      <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">Greeting Server — Dashboard</h1>
-      <p id="last-updated" class="text-slate-400">Last updated: —</p>
-    </header>
-
-    <!-- Repo panel -->
-    <section class="mb-8">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <!-- activity icon -->
-          <svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3 2 12h4l3-8 3 8z"/></svg>
-          <h2 class="text-2xl font-semibold text-white">Repository</h2>
-          <span id="repo-name" class="text-sm text-slate-400 ml-2">(loading...)</span>
-        </div>
-
-        <div class="text-sm text-slate-400" id="repo-link-area">Loading repo stats…</div>
-      </div>
-
-      <div id="repo-stats" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-        <!-- stat cards injected by script.js -->
-      </div>
-
-      <div class="mt-3 text-sm text-slate-400">
-        <label>Optional GitHub token (client-side only):</label>
-        <input id="token-input" class="ml-2 px-2 py-1 rounded bg-slate-700 text-white" placeholder="ghp_..." />
-        <button id="set-token" class="ml-2 px-3 py-1 rounded bg-cyan-500 text-black font-semibold">Set</button>
-        <button id="clear-token" class="ml-2 px-3 py-1 rounded bg-slate-700 text-white">Clear</button>
-        <div class="mt-1 text-xs text-slate-500">If you use a token, do NOT commit it to public repos. Prefer server-side fetching for private tokens.</div>
-      </div>
-    </section>
-
-    <!-- Live stats -->
-    <section class="py-6">
-      <div class="flex items-center gap-3 mb-6">
-        <svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3 2 12h4l3-8 3 8z"/></svg>
-        <h3 class="text-2xl font-semibold text-white">Live Statistics</h3>
-      </div>
-
-      <div id="live-stats" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- stat cards injected by script.js -->
-      </div>
-    </section>
-
-    <!-- Features -->
-    <section class="py-8">
-      <div class="text-center mb-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">What Makes Us Different</h2>
-        <p class="text-slate-400 max-w-2xl mx-auto">Our greeting server is built on respect, positivity, and genuine connections.</p>
-      </div>
-
-      <div id="features" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Feature cards will be injected by script.js -->
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-12">
-      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 p-12 text-center">
-        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-teal-500/10"></div>
-        <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl"></div>
-
-        <div class="relative z-10">
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Join?</h2>
-          <p class="text-slate-400 mb-8 max-w-xl mx-auto">Become part of our welcoming community for all ages. Perfect for kids and adults! Remember: good vibes only, and absolutely no hacking!</p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button class="px-8 py-4 card-cta rounded-xl font-semibold">Connect Now</button>
-            <button class="px-8 py-4 bg-slate-800 border border-slate-700 text-white font-semibold rounded-xl hover:bg-slate-700 transition-colors">Learn More</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 border-t border-slate-800/50 text-center">
-      <p class="text-slate-500 text-sm">© 2024 Greeting Server. All rights reserved. No hacking allowed.</p>
-    </footer>
-  </main>
-
-  <script src="script.js"></script>
+    <script>
+        document.getElementById('startBtn').addEventListener('click', function() {
+            document.getElementById('status').innerText = 'Creating...';
+            
+            // Call the PHP script via AJAX
+            fetch('create_gdps.php')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('status').innerText = data;
+                    // You can add logic here to run other parts of script.js
+                })
+                .catch(error => {
+                    document.getElementById('status').innerText = 'Error occurred';
+                    console.error('Error:', error);
+                });
+        });
+    </script>
 </body>
 </html>
