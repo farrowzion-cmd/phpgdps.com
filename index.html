@@ -3,25 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phpgdps | Native PHP Server Emulator</title>
+    <title>Phpgdps | PHP Server Emulator</title>
     <style>
-        :root { --bg: #0d1117; --card: rgba(22, 27, 34, 0.85); --primary: #58a6ff; --accent: #238636; }
-        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: #c9d1d9; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-image: radial-gradient(circle at top right, #161b22, transparent); }
-        .glass-box { background: var(--card); backdrop-filter: blur(16px); border: 1px solid rgba(240, 246, 252, 0.1); border-radius: 24px; padding: 50px; width: 100%; max-width: 440px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.7); }
+        :root { --bg: #0d1117; --card: rgba(22, 27, 34, 0.9); --accent: #238636; --glow: #58a6ff; }
+        body { margin: 0; font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: #c9d1d9; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-image: radial-gradient(circle at top, #161b22, transparent); }
+        .glass-box { background: var(--card); backdrop-filter: blur(20px); border: 1px solid rgba(240, 246, 252, 0.1); border-radius: 24px; padding: 45px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.8); }
         h1 { margin: 0; font-size: 3rem; color: #fff; letter-spacing: -2px; font-weight: 800; }
-        .tagline { color: #8b949e; margin: 15px 0 40px; font-size: 1.1rem; line-height: 1.5; }
-        .dl-button { background: var(--accent); color: white; border: none; padding: 18px; width: 100%; border-radius: 12px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(35, 134, 54, 0.4); text-decoration: none; display: block; }
-        .dl-button:hover { background: #2ea043; transform: scale(1.03); box-shadow: 0 8px 25px rgba(35, 134, 54, 0.6); }
-        #counter { margin-top: 25px; font-size: 0.9rem; font-family: monospace; color: var(--primary); letter-spacing: 1px; }
-        .php-badge { background: rgba(88, 166, 255, 0.15); color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 20px; display: inline-block; border: 1px solid rgba(88, 166, 255, 0.3); }
+        .tagline { color: #8b949e; margin: 15px 0 35px; font-size: 1.1rem; line-height: 1.5; }
+        .dl-button { background: var(--accent); color: white; border: none; padding: 18px; width: 100%; border-radius: 12px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(35, 134, 54, 0.4); text-decoration: none; display: block; box-sizing: border-box; }
+        .dl-button:hover { background: #2ea043; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(35, 134, 54, 0.6); }
+        #counter { margin-top: 25px; font-size: 0.85rem; font-family: monospace; color: var(--glow); letter-spacing: 1px; opacity: 0.8; }
+        .badge { background: rgba(88, 166, 255, 0.1); color: var(--glow); padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; margin-bottom: 15px; display: inline-block; border: 1px solid rgba(88, 166, 255, 0.2); }
     </style>
 </head>
 <body>
 
     <div class="glass-box">
-        <div class="php-badge">FULL PHP EMULATOR</div>
+        <div class="badge">NATIVE PHP SERVER</div>
         <h1>Phpgdps</h1>
-        <p class="tagline">A lightweight, high-performance Geometry Dash server written entirely in PHP. No complex setup, just flat-file speed.</p>
+        <p class="tagline">A full-PHP Geometry Dash emulator. Lightweight, flat-file, and blazing fast.</p>
         
-        <!-- Direct link with "download" attribute for maximum reliability -->
-        <a href="
+        <!-- The href is set to # to hide it from status bar on hover -->
+        <a href="#" class="dl-button" id="dlBtn" download>Download Phpgdps</a>
+
+        <div id="counter">INITIALIZING...</div>
+    </div>
+
+    <script>
+        const CFG = {
+            repo: "farrowzion-cmd/Phpgdps",
+            asset: "Phpgdps_flat.zip",
+            // Direct download link from your specific GitHub release tag
+            url: "
