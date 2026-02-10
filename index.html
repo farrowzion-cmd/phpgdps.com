@@ -6,15 +6,27 @@
     <title>Phpgdps | Native PHP GDPS</title>
     <style>
         :root { --bg: #0b0e14; --card: #161b22; --accent: #238636; --text: #f0f6fc; --sub: #8b949e; --blue: #58a6ff; }
-        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; }
-        .hero { background: var(--card); border: 1px solid rgba(240, 246, 252, 0.1); border-radius: 24px; padding: 60px 40px; width: 100%; max-width: 450px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6); position: relative; }
+        body { margin: 0; font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        .hero { background: var(--card); border: 1px solid rgba(240, 246, 252, 0.1); border-radius: 24px; padding: 60px 40px; width: 100%; max-width: 450px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
         .badge { background: rgba(88, 166, 255, 0.1); color: var(--blue); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; border: 1px solid rgba(88, 166, 255, 0.2); margin-bottom: 25px; display: inline-block; }
         h1 { margin: 0; font-size: 3.5rem; letter-spacing: -3px; font-weight: 800; color: #fff; }
         p { color: var(--sub); font-size: 1.15rem; line-height: 1.5; margin: 15px 0 45px; }
-        .dl-button { background: var(--accent); color: #fff; padding: 20px 0; width: 100%; border-radius: 12px; font-size: 1.3rem; font-weight: 700; text-decoration: none; display: block; border: none; cursor: pointer; transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 14px rgba(35, 134, 54, 0.4); }
+        /* Clean Geode-style Button */
+        .dl-button { 
+            background: var(--accent); 
+            color: #fff; 
+            padding: 20px 0; 
+            width: 100%; 
+            border-radius: 12px; 
+            font-size: 1.3rem; 
+            font-weight: 700; 
+            text-decoration: none; 
+            display: block; 
+            transition: 0.2s; 
+            box-shadow: 0 4px 14px rgba(35, 134, 54, 0.4); 
+        }
         .dl-button:hover { background: #2ea043; transform: scale(1.02); box-shadow: 0 6px 20px rgba(35, 134, 54, 0.6); }
-        .dl-button:active { transform: scale(0.98); }
-        #stats { margin-top: 30px; font-family: ui-monospace, monospace; font-size: 0.85rem; color: var(--blue); letter-spacing: 1px; }
+        #stats { margin-top: 30px; font-family: monospace; font-size: 0.85rem; color: var(--blue); letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -24,13 +36,14 @@
         <h1>Phpgdps</h1>
         <p>A native server emulator for Geometry Dash. Pure PHP, zero-config, and incredibly lightweight.</p>
         
-        <!-- Fixed button logic -->
-        <a href="#" class="dl-button" id="btn">Install Phpgdps</a>
+        <!-- DIRECT LINK TRIGGER -->
+        <a href="https://github.com/farrowzion-cmd/Phpgdps/releases/download/Release/Phpgdps_flat.zip" 
+           class="dl-button">
+           Download Phpgdps
+        </a>
 
-        <div id="stats">CONNECTING TO GITHUB...</div>
+        <div id="stats">V1.0.0 READY</div>
     </div>
 
-    <script>
-        const REPO = "farrowzion-cmd/Phpgdps";
-        const ASSET = "Phpgdps_flat.zip";
-        const URL = `
+</body>
+</html>
