@@ -2,35 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GDPS Creator</title>
+    <title>GDPS Downloads</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding-top: 50px; }
-        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
-        #status { margin-top: 20px; font-weight: bold; }
+        body { font-family: sans-serif; text-align: center; padding: 50px; background: #121212; color: white; }
+        .btn { display: inline-block; padding: 15px 25px; margin: 10px; background: #238636; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        .btn:hover { background: #2ea043; }
+        #loading { font-style: italic; color: #8b949e; }
     </style>
 </head>
 <body>
-
-    <h1>Geometry Dash Private Server</h1>
-    <button id="startBtn">Start GDPS</button>
-    <div id="status"></div>
+    <h1>GDPS Releases</h1>
+    <div id="loading">Fetching latest downloads...</div>
+    <div id="download-container"></div>
 
     <script>
-        document.getElementById('startBtn').addEventListener('click', function() {
-            document.getElementById('status').innerText = 'Creating...';
-            
-            // Call the PHP script via AJAX
-            fetch('create_gdps.php')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('status').innerText = data;
-                    // You can add logic here to run other parts of script.js
-                })
-                .catch(error => {
-                    document.getElementById('status').innerText = 'Error occurred';
-                    console.error('Error:', error);
+        const REPO = "farrowzion-cmd/Phpgdps";
+        const TAG = "Release";
+
+        async function fetchReleases() {
+            try {
+                // Fetch specific release by tag
+                const response = await fetch(`https://api.github.com{REPO}/releases/tags/${TAG}`);
+                if (!response.ok) throw new Error("Release not found");
+                
+                const data = await response.json();
+                const container = document.getElementById('download-container');
+                document.getElementById('loading').style.display = 'none';
+
+                // Loop through assets (zip, exe, etc.) and create buttons
+                data.assets.forEach(asset => {
+                    const link = document.createElement('a');
+                    link.href = asset.browser_download_url;
+                    link.className = 'btn';
+                    link.innerText = `Download ${asset.name}`;
+                    container.appendChild(link);
                 });
-        });
+
+                // Also add a button for the Source Code (ZIP)
+                const sourceBtn = document.createElement('a');
+                sourceBtn.href = data.zipball_url;
+                sourceBtn.className = 'btn';
+                sourceBtn.style.background = '#8b949e';
+                sourceBtn.innerText = "Download Source Code (.zip)";
+                container.appendChild(sourceBtn);
+
+            } catch (error) {
+                document.getElementById('loading').innerText = "Error loading releases. Check repo visibility.";
+                console.error(error);
+            }
+        }
+
+        fetchReleases();
     </script>
 </body>
 </html>
